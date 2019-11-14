@@ -13,15 +13,20 @@ class App extends Component {
     store: this.props.store
   };
 
-  deleteFunction = id => {
-    const newCards = Object.values(this.state.store.allCards);
+  deleteFunction = (id, index) => {
+    const newCards = this.state.store.lists;
     console.log(newCards);
-    newCards.filter(newCards.cardId => newCards.cardId !== newCards.id);
-    console.log(newCards);
-    this.setState({
-      Store: { allCards: newCards }
-    });
   };
+
+  // deleteAllOfId = id => {
+  //   // const newCards = Object.values(this.state.store.allCards);
+  //   // console.log(newCards);
+  //   // newCards.filter(newCards.cardId => newCards.cardId !== newCards.id);
+  //   // console.log(newCards);
+  //   // this.setState({
+  //   //   Store: { allCards: newCards }
+  //   // });
+  // };
 
   render() {
     return (
