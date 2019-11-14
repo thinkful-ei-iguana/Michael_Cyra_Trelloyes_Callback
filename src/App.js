@@ -54,9 +54,12 @@ class App extends Component {
 
 
   randomCard = (listId) => {
-    console.log(listId);
+    console.log(this.state);
+    console.log(this.state.store.allCards.a.title);
+    const newVar = [...this.state.store.lists];
+    console.log(newVar[0].cardIds);
+    console.log(...newVar[0].cardIds);
     const newCard = newRandomCard();
-    console.log(newCard);
     const newList = this.state.store.lists.map(list => {
       if (list.id === listId) {
         return{...list, cardIds:[...list.cardIds, newCard.id]};
