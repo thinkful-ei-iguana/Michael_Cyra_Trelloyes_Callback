@@ -32,7 +32,7 @@ class App extends Component {
     const newCards = omit(allCards, cardId);
 
     this.setState({
-      Store: {
+      store: {
         lists: newLists,
         allCards: newCards
       }
