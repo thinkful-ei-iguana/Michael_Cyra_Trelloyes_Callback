@@ -10,6 +10,17 @@ function omit(obj, keyToOmit) {
     {}
   );
 }
+
+const newRandomCard = () => {
+  const id = Math.random().toString(36).substring(2, 4)
+    + Math.random().toString(36).substring(2, 4);
+  return {
+    id,
+    title: `Random Card ${id}`,
+    content: 'lorem ipsum',
+  }
+}
+
 class App extends Component {
   static defaultProps = {
     store: {
@@ -37,17 +48,34 @@ class App extends Component {
         allCards: newCards
       }
     });
+
+    
   };
 
-  // deleteAllOfId = id => {
-  //   // const newCards = Object.values(this.state.store.allCards);
-  //   // console.log(newCards);
-  //   // newCards.filter(newCards.cardId => newCards.cardId !== newCards.id);
-  //   // console.log(newCards);
-  //   // this.setState({
-  //   //   Store: { allCards: newCards }
-  //   // });
-  // };
+
+  randomCard = (listId) => {
+    console.log(listId);
+    const newCard = newRandomCard();
+    console.log(newCard);
+    const newList = this.state.store.lists.map(list => {
+      if (list.id === listId) {
+        return{...list, cardIds:[...list.cardIds, newCard.id]};
+
+
+      }
+      return list;
+    })
+    this.setState({
+      store: {
+        lists: newList,
+        allCards: {...this.state.store.allCards, 
+            [newCard.id]: newCard}
+    
+      }
+    });
+  }
+
+
 
   render() {
     const { store } = this.state;
@@ -64,6 +92,7 @@ class App extends Component {
               header={list.header}
               cards={list.cardIds.map(id => store.allCards[id])}
               delete={this.deleteFunction}
+              random={this.randomCard}
             />
           ))}
         </div>
