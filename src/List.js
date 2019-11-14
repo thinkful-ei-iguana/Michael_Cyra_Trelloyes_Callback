@@ -11,7 +11,6 @@ export default function List(props) {
       <div className="List-cards">
         {props.cards.map(card => (
           <Card
-            listNum={props.id}
             id={card.id}
             key={card.id}
             title={card.title}

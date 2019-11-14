@@ -12,3 +12,7 @@ export default function Card(props) {
     </div>
   );
 }
+
+Card.propTypes = {
+  onClickDelete: () => {}
+};
